@@ -15,6 +15,15 @@ class CommentsController < ApplicationController
 		end
 	end
 
+	def edit
+		@comment = Comment.find(params[:id])
+	end
+
+	def destroy
+		@comment = Comment.find(params[:id])
+		@comment.destroy
+		redirect_to posts_path
+	end
 	protected
 
 	def get_parent
@@ -27,8 +36,8 @@ class CommentsController < ApplicationController
 	private
 
 	def comment_params
-      params.require(:comment).permit(:title, :body)
-    end
+		params.require(:comment).permit(:title, :body)
+	end
 
 
 

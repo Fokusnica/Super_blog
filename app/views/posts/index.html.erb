@@ -1,9 +1,11 @@
-<h1>Posts</h1>
+<div class="page-header">
+	<h1>Posts</h1>
+</div>
 
 <p>Add a <%= link_to 'new post', new_post_path %>.</p>
 
 <ul>
-  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
-  <% end %>
+	<% @posts.each do |post| %>
+	<li><%= link_to post.title, post_path(post) %></li>
+	<% end %>
 </ul>

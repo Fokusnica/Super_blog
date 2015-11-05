@@ -6,6 +6,8 @@
   </div>
   
   <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
+
+  <%= link_to 'Delete', post_comment_path(comment.commentable, comment), :method => :delete %>
   
   <% unless comment.comments.empty? %>
   <ul class="comment_list">

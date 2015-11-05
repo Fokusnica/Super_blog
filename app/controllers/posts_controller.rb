@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :authenticate_user!
 	def index
 		@posts = Post.all
 	end
@@ -20,13 +21,34 @@ class PostsController < ApplicationController
 			render :action => :new
 		end
 	end
+	
+	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
 
+		redirect_to posts_path
+	end
+
+
+	def edit
+		@post = Post.find(params[:id])
+	end
+
+	def update
+		@post = Post.find(params[:id])
+		@post.update(post_params)
+
+		flash.notice = "Post '#{@post.title}' Updated!"
+
+
+		redirect_to post_path(@post)
+	end
 
 	private
 
 	def post_params
-      params.require(:post).permit(:title, :body)
-    end
+		params.require(:post).permit(:title, :body)
+	end
 
 
 
