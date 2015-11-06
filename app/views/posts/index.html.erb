@@ -1,11 +1,35 @@
-<div class="page-header">
-	<h1>Posts</h1>
-</div>
 
-<p>Add a <%= link_to 'new post', new_post_path %>.</p>
+<!-- Page Content -->
+<div class="container">
 
-<ul>
-	<% @posts.each do |post| %>
-	<li><%= link_to post.title, post_path(post) %></li>
-	<% end %>
-</ul>
+	<div class="row">
+
+		<!-- Blog Entries Column -->
+		<div class="col-md-8">
+
+			<h1 class="page-header">
+				All Posts
+				<small><p>Add a <%= link_to 'new post', new_post_path %></p></small>
+			</h1>
+
+			<ul>
+			<div class="panel panel-default">
+				<% @posts.each do |post| %>
+				<div class="panel-heading"><%= link_to post.title, post_path(post) %></div>
+				<!-- <li><%= link_to post.title, post_path(post) %></li> -->
+				<div class="panel-body">
+				<%= truncate(post.body, length: 100)%>
+				
+				</div>
+			
+				<% end %>
+			</ul>
+			</div>
+
+		</div>
+	</div>
+
+	</div>
+
+
+

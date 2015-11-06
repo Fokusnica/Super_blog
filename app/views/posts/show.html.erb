@@ -1,4 +1,4 @@
-<p><%= link_to "<< Back to Posts List", posts_path %> </p>
+
 <p>
 	<%= if current_user.id == @post.user_id then link_to "delete", post_path(@post),method: :delete , data: {confirm: "Really delete the post?"} end%>
 </p>
@@ -18,10 +18,10 @@
 
 <h2>Comments</h2>
 
-<p><%= link_to 'Add a Comment', new_post_comment_path(@post) %></p>
-
+<p><%= link_to 'Add a Comment', new_post_comment_path(@post), class: "btn btn-primary" %></p>
 
 <ul class="comment_list">
 	<%= render :partial => 'comments/comment', :collection => @post.comments %>
 </ul>
 
+<p><%= link_to "<< Back to Posts List", posts_path %> </p>
