@@ -10,7 +10,7 @@
 
 
 <h1><%= @post.title %></h1>
-<p>Posted By <%= @post.user.name  %></p>
+<p><%= image_tag @post.user.avatar.url(:thumb) %>  Posted By <%= @post.user.name  %> </p> 
 
 <div class="body">
 	<%= @post.body %>  
@@ -19,6 +19,7 @@
 <h2>Comments</h2>
 
 <p><%= link_to 'Add a Comment', new_post_comment_path(@post) %></p>
+
 
 <ul class="comment_list">
 	<%= render :partial => 'comments/comment', :collection => @post.comments %>
