@@ -1,13 +1,14 @@
 <li class="comment">
-  <h3><%= comment.title %></h3>
-  
+<p>Comment by <%= comment.user.name %></p>
   <div class="body">
     <%= comment.body %>
   </div>
   
   <p><%= link_to 'Add a Reply', new_comment_comment_path(comment) %></p>
 
-  <%= link_to 'Delete', post_comment_path(comment.commentable, comment), :method => :delete %>
+ <p><%=  if current_user.id == comment.user_id then link_to 'Edit', edit_comment_comment_path(comment, comment) end %></p>
+
+  <%= if current_user.id == comment.user_id then link_to 'Delete', post_comment_path(comment.commentable, comment), :method => :delete end%>
   
   <% unless comment.comments.empty? %>
   <ul class="comment_list">

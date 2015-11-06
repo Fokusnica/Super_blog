@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@comment = @parent.comments.build(comment_params)
+		@comment = @parent.comments.build(comment_params.merge(:user_id => current_user.id))
 
 		if @comment.save
 			redirect_to post_path(@comment.post), notice: 'Thank you for your comment!'
@@ -24,6 +24,17 @@ class CommentsController < ApplicationController
 		@comment.destroy
 		redirect_to posts_path
 	end
+
+		def update
+		@comment = Comment.find(params[:id])
+		@comment.update(comment_params)
+
+		flash.notice = "Comment Updated!"
+
+
+		redirect_to comment_path(@comment)
+	end
+
 	protected
 
 	def get_parent
@@ -36,7 +47,7 @@ class CommentsController < ApplicationController
 	private
 
 	def comment_params
-		params.require(:comment).permit(:title, :body)
+		params.require(:comment).permit(:body)
 	end
 
 
