@@ -1,6 +1,15 @@
 <li class="comment">
 
-  <p> <%= image_tag comment.user.avatar.url(:com) %> Comment by <%= comment.user.name %></p>
+  <table>
+    <tr>
+      <td rowspan="2"> <%= image_tag comment.user.avatar.url(:com) %> </td>
+      <th>Comment by <%= comment.user.name %></th>
+    </tr>
+    <tr>
+      <th><%= comment.created_at%></th>
+    </tr>
+  </table>
+
 
   <div class="body">
     <%= comment.body %>
@@ -8,7 +17,7 @@
   
   <p><%= link_to 'Add a Reply', new_comment_comment_path(comment), class: "btn btn-primary btn-sm" %></p>
 
-  <p><%= if current_user.id == comment.user_id then link_to 'Edit', edit_comment_comment_path(comment, comment) end %> or <%= if current_user.id == comment.user_id then link_to 'Delete', post_comment_path(comment.commentable, comment), :method => :delete end%> </p>
+  <p><%= if current_user.id == comment.user_id then link_to 'Edit', edit_comment_comment_path(comment, comment) end %> <%=if current_user.id == comment.user_id then "or " end%><%= if current_user.id == comment.user_id then link_to 'Delete', post_comment_path(comment.commentable, comment), :method => :delete end%> </p>
 
   
   

@@ -10,7 +10,19 @@
 
 
 <h1><%= @post.title %></h1>
-<p><%= image_tag @post.user.avatar.url(:thumb) %>  Posted By <%= @post.user.name  %> </p> 
+
+  <table>
+    <tr>
+      <td rowspan="2"> <%= image_tag @post.user.avatar.url(:thumb) %> </td>
+      <th>Posted By <%= @post.user.name  %></th>
+    </tr>
+    <tr>
+      <th><%= @post.created_at%></th>
+    </tr>
+  </table>
+
+
+
 
 <div class="body">
 	<%= @post.body %>  
