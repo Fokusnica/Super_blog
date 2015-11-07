@@ -1,12 +1,4 @@
 
-<p>
-	<%= if current_user.id == @post.user_id then link_to "delete", post_path(@post),method: :delete , data: {confirm: "Really delete the post?"} end%>
-</p>
-
-<p>
-	<%=  if current_user.id == @post.user_id then link_to "edit", edit_post_path(@post) end%>
-
-</p>
 
 
 <h1><%= @post.title %></h1>
@@ -27,6 +19,12 @@
 <div class="body">
 	<%= @post.body %>  
 </div>
+
+<p>
+  <%= if current_user.id == @post.user_id then link_to "delete  ", post_path(@post),method: :delete , data: {confirm: "Really delete the post?"} end%>
+  <%=  if current_user.id == @post.user_id then link_to "edit", edit_post_path(@post) end%>
+</p>
+
 
 <h2>Comments</h2>
 
